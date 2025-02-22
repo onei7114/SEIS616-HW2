@@ -117,6 +117,15 @@
           "HealthCheckProtocol": "HTTP",
           "HealthCheckPath": "/"
         }
+      },
+      "LBListener": {
+        "Type": "AWS::ElasticLoadBalancingV2::Listener",
+        "Properties": {
+          "LoadBalancerArn": {"Ref": "EngineeringLB"},
+          "Protocol": "HTTP",
+          "Port": 80,
+          "DefaultActions": [{"Type": "forward", "TargetGroupArn": {"Ref": "EngineeringWebservers"}}]
+        }
       }
     },
     "Outputs": {
